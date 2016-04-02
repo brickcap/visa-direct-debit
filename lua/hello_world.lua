@@ -1,13 +1,4 @@
-local config = require("lua/config_main").visa_config
-local unname_pass = ''
-if test then
-   uname_pass = config.username_sand..":"..config.password_sand
-else
-   uname_prod = config.username_prod..":"..config.password_prod
-end
-
 local base_64_auth_headers = "Basic "..ngx.encode_base64(uname_pass)
-ngx.log(ngx.ERR,base_64_auth_headers)
 ngx.req.set_header("Authorization",base_64_auth_headers)
 ngx.req.set_header("Content-Type","application/json")
 ngx.req.set_header("Accept","application/json")
