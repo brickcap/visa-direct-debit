@@ -54,6 +54,11 @@ if not helpers.has_value(currency_codes,post_args.senderCurrencyCode) then
    ngx.say("Invalid senderCardExpiryDate")
 end
 
+if validate:nan()(post_args.amount) then 
+   ngx.status = ngx.HTTP_BAD_REQUEST
+   ngx.say("Invalid amount")
+end
+
 post_args.systemsTraceAuditNumber = math.random(0,999999)
 post_args.retrievalReferenceNumber = helpers.get_retreival_ref_no(systemsTraceAuditNumber)
 post_args.localTransactionDateTime = os.date("%Y-%m-%dT%H:%M:%S")
