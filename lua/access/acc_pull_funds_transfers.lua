@@ -115,7 +115,9 @@ end
 if post_args.cardAcceptor.address.country == 'USA' or post_args.cardAcceptor.address.country == 'CAN' then
    if post_args.cardAcceptor.address.county == nil or post_args.cardAcceptor.address.county == '' 
       or post_args.cardAcceptor.address.state == nil or post_args.cardAcceptor.address.state == '' 
-   or validate:len(2,2)(post_args.cardAcceptor.address.state) then
+      or validate:len(2,2)(post_args.cardAcceptor.address.state) or post_args.cardAcceptor.address.zipCode =='' 
+      or post_args.cardAcceptor.address.zipCode==nil or 
+   validate:len(5,9)(post_args.cardAcceptor.address.zipCode) then
       ngx.status = ngx.HTTP_BAD_REQUEST
       ngx.say("Invalid address")
    end
