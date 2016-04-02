@@ -8,4 +8,5 @@ erl_crash.dump
 _rel
 .ebin
 node_modules
+keys
 logs
