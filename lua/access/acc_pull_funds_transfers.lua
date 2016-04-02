@@ -41,6 +41,7 @@ if not helpers.has_value(country_codes,post_args.acquirerCountryCode) then
 end
 
 if validate:len(13,19)(post_args.senderPrimaryAccountNumber) then 
+-- should be verified by making a call to this api https://developer.visa.com/products/paai/reference
    ngx.status = ngx.HTTP_BAD_REQUEST
    ngx.say("Invalid senderPrimaryAccountNumber")
 end
