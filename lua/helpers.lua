@@ -27,6 +27,16 @@ function _M.get_retreival_ref_no(systemsTraceAuditNumber)
    j_year = string.sub(year,-1,-1)   
    return j_year..j_yday..j_hour..tostring(systemsTraceAuditNumber)
 end
+
+function _M.has_value (tab, val)
+    for index, value in ipairs (tab) do
+        if value == val then
+            return true
+        end
+    end
+
+    return false
+end
 -- ngx.log(ngx.ERR,cjson.encode(os.date("*t")))
 -- ngx.log(ngx.ERR,_M.get_retreival_ref_no(123456))
 return _M;

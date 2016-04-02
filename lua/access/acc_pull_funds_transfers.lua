@@ -1,4 +1,6 @@
 local helpers = require("helpers")
+local validate = require("lua/lua-resty-validation/lib/resty/validation")
+local country_codes = require("lua/access/country_codes")
 -- {
 --   "acquirerCountryCode"= "840",
 --   "acquiringBin": "408999",
@@ -27,5 +29,15 @@ local helpers = require("helpers")
 -- }
 ngx.req.read_body()
 local post_args = ngx.req.get_post_args()
+if post_args.acquiringBin=='' or post_args.acquiringBin == nil then
+   ngx.status = ngx.HTTP_BAD_REQUEST
+   ngx.say("Invalid acquiringBin")
+end
+if not helpers.has_value(country_codes,post_args.acquirerCountryCode) then
+   ngx.status = ngx.HTTP_BAD_REQUEST
+   ngx.say("Invalid acquirerCountryCode ")
+end
+
 local systemsTraceAuditNumber = math.random(0,999999)
 local retrievalReferenceNumber = helpers.get_retreival_ref_no(systemsTraceAuditNumber)
+local localTransactionDateTime = os.date("%Y-%m-%dT%H:%M:%S")
