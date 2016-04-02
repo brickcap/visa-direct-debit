@@ -59,6 +59,30 @@ if validate:nan()(post_args.amount) then
    ngx.say("Invalid amount")
 end
 
+
+if (post_args.surcharge~=nil or post_args.surcharge~='') and validate:nan()(post_args.surcharge) then 
+   ngx.status = ngx.HTTP_BAD_REQUEST
+   ngx.say("Invalid surcharge")
+end
+
+if(post_args.cavv~=nil or post_args.cavv~='') and not validate:len(40,40)(post_args.cavv) then
+   ngx.status = ngx.HTTP_BAD_REQUEST
+   ngx.say("Invalid cavv")
+end
+
+if(post_args.foreignExchangeFeeTransaction~=nil or post_args.foreignExchangeFeeTransaction~='') 
+and  validate:nan()(post_args.foreignExchangeFeeTransaction) then
+   ngx.status = ngx.HTTP_BAD_REQUEST
+   ngx.say("Invalid foreignExchangeFeeTransaction")
+end
+
+if not has_value(business_app_id,post_args.businessApplicationId) then
+   ngx.status = ngx.HTTP_BAD_REQUEST
+   ngx.say("Invalid businessApplicationId")
+end
+
+
+
 post_args.systemsTraceAuditNumber = math.random(0,999999)
 post_args.retrievalReferenceNumber = helpers.get_retreival_ref_no(systemsTraceAuditNumber)
 post_args.localTransactionDateTime = os.date("%Y-%m-%dT%H:%M:%S")
