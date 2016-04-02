@@ -10,3 +10,4 @@ _rel
 node_modules
 keys
 logs
+lua/config_main.lua
