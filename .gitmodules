@@ -1,0 +1,3 @@
+[submodule "lua/lua-resty-validation"]
+	path = lua/lua-resty-validation
+	url = https://github.com/bungle/lua-resty-validation.git
