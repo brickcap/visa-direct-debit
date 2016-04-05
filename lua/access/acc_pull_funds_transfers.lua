@@ -29,7 +29,7 @@ local country_codes,currency_codes = require("lua/access/country_codes"),require
 --   "systemsTraceAuditNumber": "451001" [required 6 digits integer]
 -- }
 ngx.req.read_body()
-local post_args = ngx.req.get_post_args()
+local post_args = ngx.req.get_body_data()
 
 if not validate:len(6,11)(post_args.acquiringBin) then
    ngx.status = ngx.HTTP_BAD_REQUEST
