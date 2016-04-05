@@ -9,5 +9,6 @@ if post_args.primaryAccountNumber == nil or post_args.primaryAccountNumber=='' t
 ngx.status = ngx.HTTP_BAD_REQUEST
 ngx.say("Invalid primaryAccountNumber")
 else
+   ngx.ctx.post_args = post_args
    ngx.exit(ngx.OK)
 end
