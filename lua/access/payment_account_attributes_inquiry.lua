@@ -5,7 +5,7 @@ local body_data = ngx.req.get_body_data()
 local post_args = cjson.decode(body_data)
 post_args.systemsTraceAuditNumber = math.random(0,999999)
 post_args.retrievalReferenceNumber = helpers.get_retreival_ref_no(post_args.systemsTraceAuditNumber)
-
+-- primary account number is the no on the credit card (not the bank number)
 if post_args.primaryAccountNumber == nil or post_args.primaryAccountNumber=='' then 
 ngx.status = ngx.HTTP_BAD_REQUEST
 ngx.say("Invalid primaryAccountNumber")
